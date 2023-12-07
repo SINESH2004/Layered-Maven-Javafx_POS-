@@ -2,6 +2,12 @@ package controller;
 
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import dao.CustomerModel;
+import dao.OrderModel;
+import dao.ProductsModel;
+import dao.impl.CustomerModelImpl;
+import dao.impl.OrderModelImpl;
+import dao.impl.ProductsModelImpl;
 import dto.CustomerDto;
 import dto.OrderDetailsDto;
 import dto.OrderDto;
@@ -20,12 +26,6 @@ import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import model.CustomerModel;
-import model.OrderModel;
-import model.ProductsModel;
-import model.impl.CustomerModelImpl;
-import model.impl.OrderModelImpl;
-import model.impl.ProductsModelImpl;
 
 import java.io.IOException;
 import java.net.URL;

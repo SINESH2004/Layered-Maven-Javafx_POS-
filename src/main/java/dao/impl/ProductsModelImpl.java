@@ -1,9 +1,9 @@
-package model.impl;
+package dao.impl;
 
+import dao.ProductsModel;
 import db.DBConnection;
 import dto.ProductsDto;
 import javafx.scene.control.Alert;
-import model.ProductsModel;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

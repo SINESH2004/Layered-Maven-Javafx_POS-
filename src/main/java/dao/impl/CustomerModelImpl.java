@@ -1,8 +1,8 @@
-package model.impl;
+package dao.impl;
 
+import dao.CustomerModel;
 import db.DBConnection;
 import dto.CustomerDto;
-import model.CustomerModel;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -2,6 +2,8 @@ package controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import dao.CustomerModel;
+import dao.impl.CustomerModelImpl;
 import dto.CustomerDto;
 import dto.TableModel.CustomerTm;
 import javafx.collections.FXCollections;
@@ -18,8 +20,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import model.CustomerModel;
-import model.impl.CustomerModelImpl;
 
 import java.io.IOException;
 import java.net.URL;

@@ -5,6 +5,8 @@ import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import dao.ProductsModel;
+import dao.impl.ProductsModelImpl;
 import dto.ProductsDto;
 import dto.TableModel.ProductsTm;
 import javafx.beans.value.ChangeListener;
@@ -21,8 +23,6 @@ import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import model.ProductsModel;
-import model.impl.ProductsModelImpl;
 
 import java.io.IOException;
 import java.net.URL;

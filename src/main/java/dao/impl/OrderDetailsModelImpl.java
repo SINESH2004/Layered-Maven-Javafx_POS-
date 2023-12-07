@@ -1,8 +1,8 @@
-package model.impl;
+package dao.impl;
 
+import dao.OrderDetailsModel;
 import db.DBConnection;
 import dto.OrderDetailsDto;
-import model.OrderDetailsModel;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;

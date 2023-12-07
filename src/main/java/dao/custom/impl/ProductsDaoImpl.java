@@ -1,6 +1,6 @@
-package dao.impl;
+package dao.custom.impl;
 
-import dao.ProductsDao;
+import dao.custom.ProductsDao;
 import db.DBConnection;
 import dto.ProductsDto;
 import javafx.scene.control.Alert;

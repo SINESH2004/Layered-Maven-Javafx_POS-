@@ -2,12 +2,12 @@ package controller;
 
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-import dao.CustomerDao;
-import dao.OrderDao;
-import dao.ProductsDao;
-import dao.impl.CustomerDaoImpl;
-import dao.impl.OrderDaoImpl;
-import dao.impl.ProductsDaoImpl;
+import dao.custom.CustomerDao;
+import dao.custom.OrderDao;
+import dao.custom.ProductsDao;
+import dao.custom.impl.CustomerDaoImpl;
+import dao.custom.impl.OrderDaoImpl;
+import dao.custom.impl.ProductsDaoImpl;
 import dto.CustomerDto;
 import dto.OrderDetailsDto;
 import dto.OrderDto;

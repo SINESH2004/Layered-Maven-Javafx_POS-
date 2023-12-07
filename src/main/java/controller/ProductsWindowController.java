@@ -1,5 +1,8 @@
 package controller;
 
+import bo.BoFactory;
+import bo.custom.CustomerBo;
+import bo.custom.ProductBo;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTreeTableView;
@@ -7,6 +10,8 @@ import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import dao.custom.ProductsDao;
 import dao.custom.impl.ProductsDaoImpl;
+import dao.util.BoType;
+import dto.CustomerDto;
 import dto.ProductsDto;
 import dto.TableModel.ProductsTm;
 import javafx.beans.value.ChangeListener;
@@ -49,6 +54,7 @@ public class ProductsWindowController implements Initializable {
     public JFXTextField DescriptionInput;
     public JFXTextField CodeInput;
 
+    private ProductBo<ProductsDto> productBo = BoFactory.getInstance().getBo(BoType.PRODUCTS);
     private ProductsDao productsDao = new ProductsDaoImpl();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -101,7 +107,7 @@ public class ProductsWindowController implements Initializable {
         ObservableList<ProductsTm> tmList = FXCollections.observableArrayList();
 
         try {
-            List<ProductsDto> dtoList = productsDao.allProducts();
+            List<ProductsDto> dtoList = productBo.allProducts();
 
             for (ProductsDto dto : dtoList) {
                 JFXButton btn = new JFXButton("Delete");
@@ -136,7 +142,7 @@ public class ProductsWindowController implements Initializable {
 
     private void deleteProduct(String code) {
         try {
-            boolean isDeleted = productsDao.deleteProduct(code);
+            boolean isDeleted = productBo.deleteProduct(code);
             if (isDeleted){
                 new Alert(Alert.AlertType.INFORMATION,"Product Deleted!").show();
                 loadProductsTable();
@@ -174,7 +180,7 @@ public class ProductsWindowController implements Initializable {
 
     public void UpdateBtnOnAction(ActionEvent actionEvent) {
         try {
-            boolean isUpdated = productsDao.productUpdateBtn(new ProductsDto(CodeInput.getText(),
+            boolean isUpdated = productBo.updateProduct(new ProductsDto(CodeInput.getText(),
                     DescriptionInput.getText(),
                     Double.parseDouble(PriceInput.getText()),
                     Integer.parseInt(QtyInput.getText())
@@ -191,7 +197,7 @@ public class ProductsWindowController implements Initializable {
 
     public void SaveBtnOnAction(ActionEvent actionEvent) {
         try {
-            boolean isSaved = productsDao.productSaveBtn(new ProductsDto(CodeInput.getText(),
+            boolean isSaved = productBo.saveProduct(new ProductsDto(CodeInput.getText(),
                     DescriptionInput.getText(),
                     Double.parseDouble(PriceInput.getText()),
                     Integer.parseInt(QtyInput.getText())

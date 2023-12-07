@@ -1,69 +1,41 @@
 package dao.custom.impl;
 
 import dao.custom.ProductsDao;
-import db.DBConnection;
+import dao.util.CrudUtil;
 import dto.ProductsDto;
-import javafx.scene.control.Alert;
+import entity.Products;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductsDaoImpl implements ProductsDao {
     @Override
-    public boolean productSaveBtn(ProductsDto dto) throws SQLException, ClassNotFoundException {
-        try {
-            String sql = "INSERT INTO products VALUES (?, ?, ?, ?)";
-            try (PreparedStatement pstm = DBConnection.getInstance().getConnection().prepareStatement(sql)) {
-                pstm.setString(1, dto.getCode());
-                pstm.setString(2, dto.getDescription());
-                pstm.setDouble(3, dto.getUnitPrice());
-                pstm.setInt(4, dto.getQuantity());
-
-                return pstm.executeUpdate() > 0;
-            }
-        }catch (SQLIntegrityConstraintViolationException ex){
-            new Alert(Alert.AlertType.ERROR,"Duplicate Entry").show();
-            return false;
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-            return false;
-        }
+    public boolean save(Products entity) throws SQLException, ClassNotFoundException {
+        String sql = "INSERT INTO products VALUES(?,?,?,?)";
+        return CrudUtil.execute(sql,entity.getCode(),entity.getDescription(),entity.getUnitPrice(),entity.getQtyOnHand());
     }
 
     @Override
-    public boolean productUpdateBtn(ProductsDto dto) throws SQLException, ClassNotFoundException {
-        String sql = "UPDATE products SET qtyOnHand=?, description=?, unitPrice=? WHERE code=?";
-        try (PreparedStatement pstm = DBConnection.getInstance().getConnection().prepareStatement(sql)) {
-            pstm.setInt(1, dto.getQuantity());
-            pstm.setString(2, dto.getDescription());
-            pstm.setDouble(3, dto.getUnitPrice());
-            pstm.setString(4, dto.getCode());
-            return pstm.executeUpdate() > 0;
-        }
+    public boolean update(Products entity) throws SQLException, ClassNotFoundException {
+        String sql = "UPDATE products SET description=?, unitPrice=?, qtyOnHand=? WHERE code=?";
+        return CrudUtil.execute(sql,entity.getDescription(),entity.getUnitPrice(),entity.getQtyOnHand(),entity.getCode());
     }
 
-
     @Override
-    public boolean deleteProduct(String code) throws SQLException, ClassNotFoundException {
+    public boolean delete(String value) throws SQLException, ClassNotFoundException {
         String sql = "DELETE from products WHERE code=?";
-        PreparedStatement pstm = DBConnection.getInstance().getConnection().prepareStatement(sql);
-        pstm.setString(1,code);
-        return pstm.executeUpdate()>0;
+        return CrudUtil.execute(sql,value);
     }
 
     @Override
-    public List<ProductsDto> allProducts() throws SQLException, ClassNotFoundException {
-        List<dto.ProductsDto> list = new ArrayList<>();
-
+    public List<Products> getAll() throws SQLException, ClassNotFoundException {
+        List<Products> list = new ArrayList<>();
         String sql = "SELECT * FROM products";
-        PreparedStatement pstm = DBConnection.getInstance().getConnection().prepareStatement(sql);
-        ResultSet resultSet = pstm.executeQuery();
+        ResultSet resultSet = CrudUtil.execute(sql);
         while (resultSet.next()){
-            list.add(new dto.ProductsDto(
+            list.add(new Products(
                     resultSet.getString(1),
                     resultSet.getString(2),
                     resultSet.getDouble(3),
@@ -72,11 +44,12 @@ public class ProductsDaoImpl implements ProductsDao {
         }
         return list;
     }
+
+
+    @Override
     public ProductsDto getProductByCode(String code) throws SQLException, ClassNotFoundException {
         String sql = "SELECT * FROM products WHERE code=?";
-        try (PreparedStatement pstm = DBConnection.getInstance().getConnection().prepareStatement(sql)) {
-            pstm.setString(1, code);
-            try (ResultSet resultSet = pstm.executeQuery()) {
+            try (ResultSet resultSet = CrudUtil.execute(sql,code)) {
                 if (resultSet.next()) {
                     return new ProductsDto(
                             resultSet.getString("code"),
@@ -86,8 +59,6 @@ public class ProductsDaoImpl implements ProductsDao {
                     );
                 }
             }
-        }
         return null;
     }
-
 }

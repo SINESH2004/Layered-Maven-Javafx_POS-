@@ -1,5 +1,7 @@
 package controller;
 
+import bo.BoFactory;
+import bo.custom.ProductBo;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import dao.custom.CustomerDao;
@@ -8,6 +10,7 @@ import dao.custom.ProductsDao;
 import dao.custom.impl.CustomerDaoImpl;
 import dao.custom.impl.OrderDaoImpl;
 import dao.custom.impl.ProductsDaoImpl;
+import dao.util.BoType;
 import dto.CustomerDto;
 import dto.OrderDetailsDto;
 import dto.OrderDto;
@@ -70,6 +73,8 @@ public class InvoiceWindowController implements Initializable {
     private ProductsDao productsDao = new ProductsDaoImpl();
     private OrderDao orderDao = new OrderDaoImpl();
     private ObservableList<OrderTm> tmList = FXCollections.observableArrayList();
+
+    private ProductBo<ProductsDto> productBo = BoFactory.getInstance().getBo(BoType.PRODUCTS);
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         CodeCell.setCellValueFactory(new TreeItemPropertyValueFactory<>("code"));
@@ -101,7 +106,7 @@ public class InvoiceWindowController implements Initializable {
     }
     private void loadProductID() {
         try {
-            products = productsDao.allProducts();
+            products = productBo.allProducts();
             ObservableList list =FXCollections.observableArrayList();
             for (ProductsDto dto:products) {
                 list.add(dto.getCode());

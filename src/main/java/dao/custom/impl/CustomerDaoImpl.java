@@ -4,6 +4,7 @@ import dao.custom.CustomerDao;
 import dao.util.CrudUtil;
 import db.DBConnection;
 import dto.CustomerDto;
+import dto.ProductsDto;
 import entity.Customer;
 
 import java.sql.PreparedStatement;
@@ -45,5 +46,21 @@ public class CustomerDaoImpl implements CustomerDao {
             ));
         }
         return list;
+    }
+
+    @Override
+    public ProductsDto getProductByCode(String code) throws SQLException, ClassNotFoundException {
+        String sql = "SELECT * FROM products WHERE code=?";
+        try (ResultSet resultSet = CrudUtil.execute(sql,code)) {
+            if (resultSet.next()) {
+                return new ProductsDto(
+                        resultSet.getString("code"),
+                        resultSet.getString("description"),
+                        resultSet.getDouble("unitPrice"),
+                        resultSet.getInt("qtyOnHand")
+                );
+            }
+        }
+        return null;
     }
 }

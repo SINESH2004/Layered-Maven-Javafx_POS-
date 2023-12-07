@@ -13,6 +13,7 @@ import dto.OrderDetailsDto;
 import dto.OrderDto;
 import dto.ProductsDto;
 import dto.TableModel.OrderTm;
+import entity.Customer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -61,7 +62,7 @@ public class InvoiceWindowController implements Initializable {
     public TreeTableColumn CodeCell;
     public Label TotalLabel;
     public Label InvoiceNo;
-    private List<CustomerDto> customers;
+    private List<Customer> customers;
     private List<ProductsDto> products;
     private double total = 0;
 
@@ -83,7 +84,7 @@ public class InvoiceWindowController implements Initializable {
         generateID();
 
         CustomerIDragDown.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
-            for (CustomerDto dto :customers) {
+            for (Customer dto :customers) {
                 if (dto.getId().equals(newValue)){
                     NameLabel.setText(dto.getName());
                 }
@@ -115,9 +116,9 @@ public class InvoiceWindowController implements Initializable {
 
     private void loadCustomerID() {
         try {
-            customers = customerDao.allCustomers();
+            customers = customerDao.getAll();
             ObservableList list = FXCollections.observableArrayList();
-            for (CustomerDto dto:customers) {
+            for (Customer dto:customers) {
                 list.add(dto.getId());
             }
             CustomerIDragDown.setItems(list);

@@ -1,11 +1,13 @@
 package controller;
 
+import bo.BoFactory;
 import bo.custom.CustomerBo;
 import bo.custom.Impl.CustomerBoImpl;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import dao.custom.CustomerDao;
 import dao.custom.impl.CustomerDaoImpl;
+import dao.util.BoType;
 import dto.CustomerDto;
 import dto.TableModel.CustomerTm;
 import javafx.collections.FXCollections;
@@ -52,7 +54,7 @@ public class CustomerWindowController implements Initializable {
     public TableView<CustomerTm> CustomerTableID;
     public TableColumn ID;
 
-    private CustomerBo<CustomerDto> customerBo = new CustomerBoImpl();
+    private CustomerBo<CustomerDto> customerBo = BoFactory.getInstance().getBo(BoType.CUSTOMER);
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ID.setCellValueFactory(new PropertyValueFactory<>("id"));

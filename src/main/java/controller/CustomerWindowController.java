@@ -2,8 +2,8 @@ package controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import dao.CustomerModel;
-import dao.impl.CustomerModelImpl;
+import dao.CustomerDao;
+import dao.impl.CustomerDaoImpl;
 import dto.CustomerDto;
 import dto.TableModel.CustomerTm;
 import javafx.collections.FXCollections;
@@ -50,7 +50,7 @@ public class CustomerWindowController implements Initializable {
     public TableView<CustomerTm> CustomerTableID;
     public TableColumn ID;
 
-    private CustomerModel customerModel = new CustomerModelImpl();
+    private CustomerDao customerDao = new CustomerDaoImpl();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ID.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -85,7 +85,7 @@ public class CustomerWindowController implements Initializable {
         ObservableList<CustomerTm> tmList = FXCollections.observableArrayList();
 
         try {
-            List<CustomerDto> dtoList = customerModel.allCustomers();
+            List<CustomerDto> dtoList = customerDao.allCustomers();
 
             for (CustomerDto dto:dtoList) {
                 Button btn = new Button("Delete");
@@ -116,7 +116,7 @@ public class CustomerWindowController implements Initializable {
     }
     private void deleteCustomerBtn(String id) {
         try {
-            boolean isDeleted = customerModel.deleteCustomer(id);
+            boolean isDeleted = customerDao.deleteCustomer(id);
             if (isDeleted){
                 new Alert(Alert.AlertType.INFORMATION,"Customer Deleted!").show();
                 loadCustomerTable();
@@ -130,7 +130,7 @@ public class CustomerWindowController implements Initializable {
     }
     public void SaveBtnOnAction(ActionEvent actionEvent) {
         try {
-            boolean isSaved = customerModel.SaveBtn(new CustomerDto(CustomerIDField.getText(),
+            boolean isSaved = customerDao.SaveBtn(new CustomerDto(CustomerIDField.getText(),
                     CustomerNameField.getText(),
                     CustomerAddressField.getText(),
                     Double.parseDouble(CustomerSalaryField.getText())
@@ -149,7 +149,7 @@ public class CustomerWindowController implements Initializable {
     }
     public void UpdateBtnOnAction(ActionEvent actionEvent) {
         try {
-            boolean isUpdated = customerModel.UpdateBtn(new CustomerDto(CustomerIDField.getText(),
+            boolean isUpdated = customerDao.UpdateBtn(new CustomerDto(CustomerIDField.getText(),
                     CustomerNameField.getText(),
                     CustomerAddressField.getText(),
                     Double.parseDouble(CustomerSalaryField.getText())

@@ -5,7 +5,7 @@ import dto.ProductsDto;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface ProductsModel {
+public interface ProductsDao {
     boolean productSaveBtn(ProductsDto dto) throws SQLException, ClassNotFoundException;
     boolean productUpdateBtn(ProductsDto  dto) throws SQLException, ClassNotFoundException;
     boolean deleteProduct(String id) throws SQLException, ClassNotFoundException;

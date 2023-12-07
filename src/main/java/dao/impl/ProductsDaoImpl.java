@@ -1,6 +1,6 @@
 package dao.impl;
 
-import dao.ProductsModel;
+import dao.ProductsDao;
 import db.DBConnection;
 import dto.ProductsDto;
 import javafx.scene.control.Alert;
@@ -12,7 +12,7 @@ import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductsModelImpl implements ProductsModel {
+public class ProductsDaoImpl implements ProductsDao {
     @Override
     public boolean productSaveBtn(ProductsDto dto) throws SQLException, ClassNotFoundException {
         try {

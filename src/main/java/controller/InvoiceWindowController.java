@@ -2,12 +2,12 @@ package controller;
 
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-import dao.CustomerModel;
-import dao.OrderModel;
-import dao.ProductsModel;
-import dao.impl.CustomerModelImpl;
-import dao.impl.OrderModelImpl;
-import dao.impl.ProductsModelImpl;
+import dao.CustomerDao;
+import dao.OrderDao;
+import dao.ProductsDao;
+import dao.impl.CustomerDaoImpl;
+import dao.impl.OrderDaoImpl;
+import dao.impl.ProductsDaoImpl;
 import dto.CustomerDto;
 import dto.OrderDetailsDto;
 import dto.OrderDto;
@@ -65,9 +65,9 @@ public class InvoiceWindowController implements Initializable {
     private List<ProductsDto> products;
     private double total = 0;
 
-    private CustomerModel customerModel = new CustomerModelImpl();
-    private ProductsModel productsModel = new ProductsModelImpl();
-    private OrderModel orderModel = new OrderModelImpl();
+    private CustomerDao customerDao = new CustomerDaoImpl();
+    private ProductsDao productsDao = new ProductsDaoImpl();
+    private OrderDao orderDao = new OrderDaoImpl();
     private ObservableList<OrderTm> tmList = FXCollections.observableArrayList();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -100,7 +100,7 @@ public class InvoiceWindowController implements Initializable {
     }
     private void loadProductID() {
         try {
-            products = productsModel.allProducts();
+            products = productsDao.allProducts();
             ObservableList list =FXCollections.observableArrayList();
             for (ProductsDto dto:products) {
                 list.add(dto.getCode());
@@ -115,7 +115,7 @@ public class InvoiceWindowController implements Initializable {
 
     private void loadCustomerID() {
         try {
-            customers = customerModel.allCustomers();
+            customers = customerDao.allCustomers();
             ObservableList list = FXCollections.observableArrayList();
             for (CustomerDto dto:customers) {
                 list.add(dto.getId());
@@ -130,7 +130,7 @@ public class InvoiceWindowController implements Initializable {
 
     public void generateID(){
         try {
-            OrderDto Dto = orderModel.lastOrder();
+            OrderDto Dto = orderDao.lastOrder();
             if (Dto!=null) {
                 String orderID = Dto.getOrderID();
                 int s = Integer.parseInt(orderID.split("[D]")[1]);
@@ -158,7 +158,7 @@ public class InvoiceWindowController implements Initializable {
         }
             boolean isSaved = false;
             try {
-                isSaved = orderModel.saveOrder(new OrderDto(
+                isSaved = orderDao.saveOrder(new OrderDto(
                         InvoiceNo.getText(),
                         LocalDateTime.now().format(DateTimeFormatter.ofPattern("YYYY-MM-dd")).toString(),
                         CustomerIDragDown.getValue().toString(),
@@ -180,7 +180,7 @@ public class InvoiceWindowController implements Initializable {
 
     public void AddToCartBtnOnAction(ActionEvent actionEvent) {
         try {
-            double amount = productsModel.getProductByCode(ProductIDDragDown.getValue().
+            double amount = productsDao.getProductByCode(ProductIDDragDown.getValue().
                     toString()).getUnitPrice() *
                     Integer.parseInt(QuantityLabel.getText());
             JFXButton btn = new JFXButton("Delete");

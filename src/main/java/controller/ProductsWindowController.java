@@ -5,8 +5,8 @@ import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-import dao.ProductsModel;
-import dao.impl.ProductsModelImpl;
+import dao.ProductsDao;
+import dao.impl.ProductsDaoImpl;
 import dto.ProductsDto;
 import dto.TableModel.ProductsTm;
 import javafx.beans.value.ChangeListener;
@@ -49,7 +49,7 @@ public class ProductsWindowController implements Initializable {
     public JFXTextField DescriptionInput;
     public JFXTextField CodeInput;
 
-    private ProductsModel productsModel= new ProductsModelImpl();
+    private ProductsDao productsDao = new ProductsDaoImpl();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Code.setCellValueFactory(new TreeItemPropertyValueFactory<>("code"));
@@ -101,7 +101,7 @@ public class ProductsWindowController implements Initializable {
         ObservableList<ProductsTm> tmList = FXCollections.observableArrayList();
 
         try {
-            List<ProductsDto> dtoList = productsModel.allProducts();
+            List<ProductsDto> dtoList = productsDao.allProducts();
 
             for (ProductsDto dto : dtoList) {
                 JFXButton btn = new JFXButton("Delete");
@@ -136,7 +136,7 @@ public class ProductsWindowController implements Initializable {
 
     private void deleteProduct(String code) {
         try {
-            boolean isDeleted = productsModel.deleteProduct(code);
+            boolean isDeleted = productsDao.deleteProduct(code);
             if (isDeleted){
                 new Alert(Alert.AlertType.INFORMATION,"Product Deleted!").show();
                 loadProductsTable();
@@ -153,7 +153,7 @@ public class ProductsWindowController implements Initializable {
 
         if (!searchCode.isEmpty()) {
             try {
-                ProductsDto product = productsModel.getProductByCode(searchCode);
+                ProductsDto product = productsDao.getProductByCode(searchCode);
 
                 if (product != null) {
                     CodeInput.setText(product.getCode());
@@ -174,7 +174,7 @@ public class ProductsWindowController implements Initializable {
 
     public void UpdateBtnOnAction(ActionEvent actionEvent) {
         try {
-            boolean isUpdated = productsModel.productUpdateBtn(new ProductsDto(CodeInput.getText(),
+            boolean isUpdated = productsDao.productUpdateBtn(new ProductsDto(CodeInput.getText(),
                     DescriptionInput.getText(),
                     Double.parseDouble(PriceInput.getText()),
                     Integer.parseInt(QtyInput.getText())
@@ -191,7 +191,7 @@ public class ProductsWindowController implements Initializable {
 
     public void SaveBtnOnAction(ActionEvent actionEvent) {
         try {
-            boolean isSaved = productsModel.productSaveBtn(new ProductsDto(CodeInput.getText(),
+            boolean isSaved = productsDao.productSaveBtn(new ProductsDto(CodeInput.getText(),
                     DescriptionInput.getText(),
                     Double.parseDouble(PriceInput.getText()),
                     Integer.parseInt(QtyInput.getText())

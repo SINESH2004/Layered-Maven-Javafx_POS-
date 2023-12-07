@@ -1,6 +1,6 @@
 package dao.impl;
 
-import dao.CustomerModel;
+import dao.CustomerDao;
 import db.DBConnection;
 import dto.CustomerDto;
 
@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerModelImpl implements CustomerModel {
+public class CustomerDaoImpl implements CustomerDao {
     @Override
     public boolean SaveBtn(CustomerDto dto) throws SQLException, ClassNotFoundException {
         String sql = "INSERT INTO customer VALUES(?,?,?,?)";

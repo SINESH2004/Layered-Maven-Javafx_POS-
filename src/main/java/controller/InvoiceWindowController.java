@@ -185,40 +185,52 @@ public class InvoiceWindowController implements Initializable {
     }
 
     public void AddToCartBtnOnAction(ActionEvent actionEvent) {
-
-            double amount = Double.parseDouble(UnitPriceLabel.getText()) * Integer.parseInt(QuantityLabel.getText());
-            JFXButton btn = new JFXButton("Delete");
-            OrderTm tm = new OrderTm(
-                    ProductIDDragDown.getValue().toString(),
-                    ProductName.getText(),
-                    Integer.parseInt(QuantityLabel.getText()),
-                    amount,
-                    btn
+        try{
+            boolean ValidCart = (Integer.parseInt(QuantityLabel.getText())>0) || !(UnitPriceLabel.getText().isEmpty())
+                    || !(ProductName.getText().isEmpty());
+                if (ValidCart){
+                    double amount = Double.parseDouble(UnitPriceLabel.getText()) * Integer.parseInt(QuantityLabel.getText());
+                    JFXButton btn = new JFXButton("Delete");
+                    btn.setStyle("-fx-background-color: #f70000;-fx-font-weight: bold;-fx-text-fill: #ffffff;");
+                    OrderTm tm = new OrderTm(
+                            ProductIDDragDown.getValue().toString(),
+                            ProductName.getText(),
+                            Integer.parseInt(QuantityLabel.getText()),
+                            amount,
+                            btn
                     );
 
-            btn.setOnAction(actionEvent1 -> {
-                tmList.remove(tm);
-                total-= tm.getAmount();
-                TableView.refresh();
-                TotalLabel.setText(String.valueOf(total));
-            });
-            boolean isExist= false;
-            for (OrderTm order:tmList) {
-                if (order.getCode().equals(tm.getCode())){
-                    order.setQuantity(order.getQuantity()+tm.getQuantity());
-                    order.setAmount(order.getAmount()+tm.getAmount());
-                    isExist=true;
-                    total += tm.getAmount();
+                    btn.setOnAction(actionEvent1 -> {
+                        tmList.remove(tm);
+                        total -= tm.getAmount();
+                        TableView.refresh();
+                        TotalLabel.setText(String.valueOf(total));
+                    });
+                    boolean isExist = false;
+                    for (OrderTm order : tmList) {
+                        if (order.getCode().equals(tm.getCode())) {
+                            order.setQuantity(order.getQuantity() + tm.getQuantity());
+                            order.setAmount(order.getAmount() + tm.getAmount());
+                            isExist = true;
+                            total += tm.getAmount();
+                        }
+                    }
+                    if (!isExist) {
+                        tmList.add(tm);
+                        total += tm.getAmount();
+                    }
+                    TreeItem<OrderTm> treeItem = new RecursiveTreeItem<OrderTm>(tmList, RecursiveTreeObject::getChildren);
+                    TableView.setRoot(treeItem);
+                    TableView.setShowRoot(false);
+                    TableView.setStyle("-fx-font-weight: bold;-fx-font-family: 'Arial Black'");
+                    TotalLabel.setText(String.valueOf(total));
+
+                }else if(!ValidCart) {
+                    new Alert(Alert.AlertType.WARNING,"Please enter Valid Quantity").show();
                 }
-            }
-            if (!isExist){
-                tmList.add(tm);
-                total += tm.getAmount();
-            }
-            TreeItem<OrderTm> treeItem = new RecursiveTreeItem<OrderTm>(tmList, RecursiveTreeObject::getChildren);
-            TableView.setRoot(treeItem);
-            TableView.setShowRoot(false);
-            TotalLabel.setText(String.valueOf(total));
+        }catch (RuntimeException ex){
+
+        }
 
     }
     //===========================================================================================================

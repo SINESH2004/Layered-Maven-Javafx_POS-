@@ -41,19 +41,28 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Text>
-            <JFXTextField fx:id="CustomerIDField" layoutX="111.0" layoutY="23.0" prefHeight="25.0" prefWidth="103.0" style="-fx-background-color: #ffffff;" unFocusColor="#fffdfd" />
+            <JFXTextField fx:id="CustomerIDField" layoutX="111.0" layoutY="23.0" prefHeight="25.0" prefWidth="103.0" promptText="Enter ID" style="-fx-background-color: #ffffff;" unFocusColor="#fffdfd">
+               <font>
+                  <Font name="Arial Bold Italic" size="14.0" />
+               </font></JFXTextField>
             <Text layoutX="-11.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer ID" wrappingWidth="121.13671875">
                <font>
                   <Font name="Ebrima Bold" size="15.0" />
                </font>
             </Text>
-            <JFXTextField fx:id="CustomerNameField" layoutX="109.0" layoutY="72.0" prefHeight="25.0" prefWidth="169.0" style="-fx-background-color: #ffffff;" unFocusColor="#fffdfd" />
+            <JFXTextField fx:id="CustomerNameField" layoutX="109.0" layoutY="72.0" prefHeight="25.0" prefWidth="169.0" promptText="Customer Name" style="-fx-background-color: #ffffff;" unFocusColor="#fffdfd">
+               <font>
+                  <Font name="Arial Bold Italic" size="14.0" />
+               </font></JFXTextField>
             <Text layoutX="-11.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Name" wrappingWidth="121.13671875">
                <font>
                   <Font name="Ebrima Bold" size="15.0" />
                </font>
             </Text>
-            <JFXTextField fx:id="CustomerAddressField" alignment="TOP_LEFT" layoutX="407.0" layoutY="22.0" prefHeight="25.0" prefWidth="178.0" style="-fx-background-color: #ffffff;" unFocusColor="#fffdfd" />
+            <JFXTextField fx:id="CustomerAddressField" alignment="TOP_LEFT" layoutX="407.0" layoutY="22.0" prefHeight="25.0" prefWidth="178.0" promptText="Address" style="-fx-background-color: #ffffff;" unFocusColor="#fffdfd">
+               <font>
+                  <Font name="Arial Bold Italic" size="14.0" />
+               </font></JFXTextField>
             <Text layoutX="252.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Address" wrappingWidth="134.5078125">
                <font>
                   <Font name="Ebrima Bold" size="15.0" />
@@ -64,7 +73,10 @@
                   <Font name="Ebrima Bold" size="17.0" />
                </font>
             </Text>
-            <JFXTextField fx:id="CustomerSalaryField" alignment="TOP_LEFT" layoutX="407.0" layoutY="71.0" prefHeight="25.0" prefWidth="178.0" style="-fx-background-color: #ffffff;" unFocusColor="#fffdfd" />
+            <JFXTextField fx:id="CustomerSalaryField" alignment="TOP_LEFT" layoutX="407.0" layoutY="71.0" prefHeight="25.0" prefWidth="178.0" promptText="Salary" style="-fx-background-color: #ffffff;" unFocusColor="#fffdfd">
+               <font>
+                  <Font name="Arial Bold Italic" size="14.0" />
+               </font></JFXTextField>
             <JFXButton fx:id="SaveBtn" layoutX="514.0" layoutY="124.0" onAction="#SaveBtnOnAction" prefHeight="35.0" prefWidth="71.0" style="-fx-background-color: #007d38;" text="Save" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="17.0" />

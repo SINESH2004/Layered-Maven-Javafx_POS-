@@ -52,10 +52,10 @@ public class ProductsDaoImpl implements ProductsDao {
             try (ResultSet resultSet = CrudUtil.execute(sql,code)) {
                 if (resultSet.next()) {
                     return new ProductsDto(
-                            resultSet.getString("code"),
-                            resultSet.getString("description"),
-                            resultSet.getDouble("unitPrice"),
-                            resultSet.getInt("qtyOnHand")
+                            resultSet.getString(1),
+                            resultSet.getString(2),
+                            resultSet.getDouble(3),
+                            resultSet.getInt(4)
                     );
                 }
             }

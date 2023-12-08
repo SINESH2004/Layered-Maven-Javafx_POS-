@@ -153,7 +153,8 @@ public class CustomerWindowController implements Initializable {
     }
     public void UpdateBtnOnAction(ActionEvent actionEvent) {
         try {
-            boolean isUpdated = customerBo.updateCustomer(new CustomerDto(CustomerIDField.getText(),
+            boolean isUpdated = customerBo.updateCustomer(new CustomerDto(
+                    CustomerIDField.getText(),
                     CustomerNameField.getText(),
                     CustomerAddressField.getText(),
                     Double.parseDouble(CustomerSalaryField.getText())

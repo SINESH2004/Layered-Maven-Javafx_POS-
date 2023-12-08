@@ -180,7 +180,8 @@ public class ProductsWindowController implements Initializable {
 
     public void UpdateBtnOnAction(ActionEvent actionEvent) {
         try {
-            boolean isUpdated = productBo.updateProduct(new ProductsDto(CodeInput.getText(),
+            boolean isUpdated = productBo.updateProduct(new ProductsDto(
+                    CodeInput.getText(),
                     DescriptionInput.getText(),
                     Double.parseDouble(PriceInput.getText()),
                     Integer.parseInt(QtyInput.getText())

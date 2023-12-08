@@ -185,10 +185,8 @@ public class InvoiceWindowController implements Initializable {
     }
 
     public void AddToCartBtnOnAction(ActionEvent actionEvent) {
-        try {
-            double amount = productsDao.getProductByCode(ProductIDDragDown.getValue().
-                    toString()).getUnitPrice() *
-                    Integer.parseInt(QuantityLabel.getText());
+
+            double amount = Double.parseDouble(UnitPriceLabel.getText()) * Integer.parseInt(QuantityLabel.getText());
             JFXButton btn = new JFXButton("Delete");
             OrderTm tm = new OrderTm(
                     ProductIDDragDown.getValue().toString(),
@@ -221,11 +219,7 @@ public class InvoiceWindowController implements Initializable {
             TableView.setRoot(treeItem);
             TableView.setShowRoot(false);
             TotalLabel.setText(String.valueOf(total));
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+
     }
     //===========================================================================================================
     // ===========================================================================================================

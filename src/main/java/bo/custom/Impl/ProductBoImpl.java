@@ -23,7 +23,7 @@ public class ProductBoImpl implements ProductBo<ProductsDto> {
     }
     @Override
     public boolean updateProduct(ProductsDto dto) throws SQLException, ClassNotFoundException {
-        return productsDao.save(new Products(
+        return productsDao.update(new Products(
                 dto.getCode(),dto.getDescription(),dto.getUnitPrice(),dto.getQuantity()));
     }
 

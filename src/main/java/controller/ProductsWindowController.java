@@ -11,6 +11,7 @@ import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import dao.custom.ProductsDao;
 import dao.custom.impl.ProductsDaoImpl;
 import dao.util.BoType;
+import db.DBConnection;
 import dto.CustomerDto;
 import dto.ProductsDto;
 import dto.TableModel.ProductsTm;
@@ -28,6 +29,10 @@ import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.io.IOException;
 import java.net.URL;
@@ -255,6 +260,17 @@ public class ProductsWindowController implements Initializable {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void PrintBtnOnAction(ActionEvent actionEvent) {
+        try {
+            JasperDesign design = JRXmlLoader.load("src/main/resources/Assets/Assets/Reports/Products.jrxml");
+            JasperReport jasperReport = JasperCompileManager.compileReport(design);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DBConnection.getInstance().getConnection());
+            JasperViewer.viewReport(jasperPrint,false);
+        } catch (JRException | ClassNotFoundException | SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 }

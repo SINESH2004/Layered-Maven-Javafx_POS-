@@ -70,7 +70,7 @@ public class InvoiceWindowController implements Initializable {
     private double total = 0;
 
     private CustomerDao customerDao = new CustomerDaoImpl();
-    private ProductsDao productsDao = new ProductsDaoImpl();
+    //private ProductsDao productsDao = new ProductsDaoImpl();
     private OrderDao orderDao = new OrderDaoImpl();
     private ObservableList<OrderTm> tmList = FXCollections.observableArrayList();
 

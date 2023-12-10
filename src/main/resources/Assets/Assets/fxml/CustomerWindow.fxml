@@ -96,6 +96,16 @@
                   <TableColumn fx:id="DeleteBtn" editable="false" prefWidth="86.0" resizable="false" sortable="false" text="Delete" />
               </columns>
             </TableView>
+            <JFXButton fx:id="Print" layoutX="274.0" layoutY="124.0" onAction="#PrintBtnOnAction" prefHeight="38.0" prefWidth="90.0" style="-fx-background-color: #4c002c;" text="PRINT" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="Print1" layoutX="274.0" layoutY="124.0" onAction="#PrintBtnOnAction" prefHeight="38.0" prefWidth="90.0" style="-fx-background-color: #4c002c;" text="PRINT" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </JFXButton>
          </children>
       </Pane>
       <Line endX="77.0" layoutX="126.0" layoutY="156.0" startX="-126.0" />

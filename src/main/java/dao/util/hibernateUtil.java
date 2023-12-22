@@ -1,6 +1,8 @@
 package dao.util;
 
 import entity.Customer;
+import entity.OrderDetail;
+import entity.Orders;
 import entity.Products;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -20,6 +22,8 @@ public class hibernateUtil {
         Metadata metadata = new MetadataSources(standardRegistry)
                 .addAnnotatedClass(Customer.class)
                 .addAnnotatedClass(Products.class)
+                .addAnnotatedClass(Orders.class)
+                .addAnnotatedClass(OrderDetail.class)
                 .getMetadataBuilder()
                 .applyImplicitNamingStrategy(ImplicitNamingStrategyJpaCompliantImpl.INSTANCE)
                 .build();

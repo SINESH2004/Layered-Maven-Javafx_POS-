@@ -6,12 +6,12 @@
 	<queryString language="SQL">
 		<![CDATA[SELECT * FROM orderdetail;]]>
 	</queryString>
-	<field name="orderId" class="java.lang.String">
+	<field name="order_id" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="orderId"/>
 		<property name="com.jaspersoft.studio.field.label" value="orderId"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="orderdetail"/>
 	</field>
-	<field name="itemCode" class="java.lang.String">
+	<field name="product_code" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="itemCode"/>
 		<property name="com.jaspersoft.studio.field.label" value="itemCode"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="orderdetail"/>
@@ -26,8 +26,8 @@
 		<property name="com.jaspersoft.studio.field.label" value="unitPrice"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="orderdetail"/>
 	</field>
-	<group name="orderId">
-		<groupExpression><![CDATA[$F{orderId}]]></groupExpression>
+	<group name="order_id">
+		<groupExpression><![CDATA[$F{order_id}]]></groupExpression>
 	</group>
 	<background>
 		<band splitType="Stretch"/>
@@ -99,7 +99,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="14" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{orderId}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{order_id}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="150" y="10" width="100" height="30" uuid="a0fc1b58-c7d9-43e5-98ff-922e04533074">
@@ -108,7 +108,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="14" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{itemCode}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{product_code}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="290" y="10" width="100" height="30" uuid="d4f0af38-df19-4cdc-aec5-24be490384fe">

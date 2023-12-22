@@ -146,7 +146,7 @@ public class InvoiceWindowController implements Initializable {
                 InvoiceNo.setText("D001");
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw  new RuntimeException(e);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }

@@ -6,7 +6,7 @@
 	<queryString language="SQL">
 		<![CDATA[SELECT * FROM orders;]]>
 	</queryString>
-	<field name="id" class="java.lang.String">
+	<field name="orderId" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="id"/>
 		<property name="com.jaspersoft.studio.field.label" value="id"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
@@ -16,13 +16,13 @@
 		<property name="com.jaspersoft.studio.field.label" value="date"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
 	</field>
-	<field name="customerId" class="java.lang.String">
+	<field name="customer_id" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="customerId"/>
 		<property name="com.jaspersoft.studio.field.label" value="customerId"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
 	</field>
-	<group name="id">
-		<groupExpression><![CDATA[$F{id}]]></groupExpression>
+	<group name="orderId">
+		<groupExpression><![CDATA[$F{orderId}]]></groupExpression>
 	</group>
 	<background>
 		<band splitType="Stretch"/>
@@ -87,7 +87,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="16" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{orderId}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="220" y="0" width="100" height="30" uuid="d2c3b67a-4efd-4662-a868-3bd9700c6bc6"/>
@@ -101,7 +101,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="16" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{customerId}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{customer_id}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

@@ -9,5 +9,5 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface ProductsDao extends CrudDao<Products> {
-
+    public ProductsDto getProductByCode(String code) throws SQLException, ClassNotFoundException;
 }

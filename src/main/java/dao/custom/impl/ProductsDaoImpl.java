@@ -45,20 +45,18 @@ public class ProductsDaoImpl implements ProductsDao {
         return list;
     }
 
-
-    @Override
     public ProductsDto getProductByCode(String code) throws SQLException, ClassNotFoundException {
         String sql = "SELECT * FROM products WHERE code=?";
-            try (ResultSet resultSet = CrudUtil.execute(sql,code)) {
-                if (resultSet.next()) {
-                    return new ProductsDto(
-                            resultSet.getString(1),
-                            resultSet.getString(2),
-                            resultSet.getDouble(3),
-                            resultSet.getInt(4)
-                    );
-                }
+        try (ResultSet resultSet = CrudUtil.execute(sql,code)) {
+            if (resultSet.next()) {
+                return new ProductsDto(
+                        resultSet.getString("code"),
+                        resultSet.getString("description"),
+                        resultSet.getDouble("unitPrice"),
+                        resultSet.getInt("qtyOnHand")
+                );
             }
+        }
         return null;
     }
 }

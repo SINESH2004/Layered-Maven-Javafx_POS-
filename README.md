@@ -1,0 +1,8 @@
+![Dashboard](https://github.com/SINESH2004/Layered-JavaFx-POS/assets/138645911/b629ae97-758e-42e7-8eb4-1f2a00734681)
+![Invoice Page](https://github.com/SINESH2004/Layered-JavaFx-POS/assets/138645911/e1e1e981-685d-455d-af00-737430c278ac)
+![Invoice Page - 2](https://github.com/SINESH2004/Layered-JavaFx-POS/assets/138645911/5a55496d-603f-4ed2-b392-9c5fea8f54b4)
+![Reports View](https://github.com/SINESH2004/Layered-JavaFx-POS/assets/138645911/41fee90a-34b2-41dc-9997-3169c603ef06)
+![Products Report](https://github.com/SINESH2004/Layered-JavaFx-POS/assets/138645911/d0aedff3-5995-47a7-9405-f9e8f7906a38)
+![Add Customers](https://github.com/SINESH2004/Layered-JavaFx-POS/assets/138645911/8b4bc5c3-1438-476c-a7d0-1c7c029c5269)
+![Add Products](https://github.com/SINESH2004/Layered-JavaFx-POS/assets/138645911/5a1c6c87-a184-4836-a8c0-51c7c94c99d6)
+![File Structure](https://github.com/SINESH2004/Layered-JavaFx-POS/assets/138645911/7a1b64f1-ef8d-4274-b44a-8c0ea53493eb)
